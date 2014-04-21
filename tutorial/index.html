@@ -1,0 +1,27 @@
+<head>
+<title>Finagle quickstart</title>
+</head>
+
+<body>
+  <div>
+    <h2>Finagle</h2>
+    <p>Finagle is an extensible RPC system for the JVM, used to construct high-concurrency servers. Finagle implements uniform client and server APIs for several protocols, and is designed for high performance and concurrency. Most of Finagle’s code is protocol agnostic, simplifying the implementation of new protocols.</p>
+    
+    <p>This example demonstrates a simple server and client communicating over HTTP.</p>
+    
+    <p>For more information, see the <a href="http://twitter.github.io/finagle/">full documentation</a>.</p>
+  </div>
+  
+<div>
+  <h2>Server</h2>
+  <p>
+A Finagle server defines services and filters. Services are functions from a request type (HttpRequest) to a Future of a response type (HttpResponse). Put another way: given a request, we must promise a response some time in the future. In the example app, we just return a trivial HTTP-200 with a message in the body and a custom HTTP header, using the same version of HTTP with which the request was dispatched.</p>
+
+<p>Filters are also simple functions used to implement additional behavior. In this case, we check for a custom header provided by the client and add it if it's not provided. Filters and services compose with the andThen method.</p>
+</div>
+
+<div>
+  <h2>Client</h2>
+<p>Finagle clients work the other way around: we’re given a Service to use. In the example app, the client is a Service to which we can dispatch HTTP requests and in return receive a Future[HttpResponse] — the promise of an HttpResponse (or an error) some time in the future. We construct 2 HTTP requests, one with a custom header and one without.</p>
+</div>
+</body>
